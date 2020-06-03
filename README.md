@@ -1,4 +1,4 @@
 ## Google Keep Clone app
 
-Google-inspired app for creating and storing notes (https://google.com/keep).
+An app for creating, keeping, and storing notes created by Google. You can find it here: https://google.com/keep. 
 App written using JavaScript, HTML, CSS.
