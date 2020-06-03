@@ -8,7 +8,8 @@ class App {
     this.$noteTitle = document.querySelector("#note-title");
     this.$noteText = document.querySelector("#note-text");
     this.$formButtons = document.querySelector("#form-buttons");
-    this.$formCloseButton = document.querySelector('#form-close-button');
+    this.$formCloseButton = document.querySelector("#form-close-button");
+    this.$modal = document.querySelector(".modal");
 
     this.addEventListeners();
   }
@@ -16,6 +17,8 @@ class App {
   addEventListeners() {
     document.body.addEventListener("click", event => {
       this.handleFormClick(event);
+      this.openModal(event);
+      this.selectNote(event);
     });
 
     this.$form.addEventListener("submit", event => {
@@ -28,16 +31,16 @@ class App {
         this.addNote({ title, text });
       }
     });
-    
-    this.$formCloseButton.addEventListener('click', event => {
-       event.stopPropagation(); 
-       this.closeForm(); 
-    })
+
+    this.$formCloseButton.addEventListener("click", event => {
+      event.stopPropagation();
+      this.closeForm();
+    });
   }
 
   handleFormClick(event) {
     const isFormClicked = this.$form.contains(event.target);
-    
+
     const title = this.$noteTitle.value;
     const text = this.$noteText.value;
     const hasNote = title || text;
@@ -63,6 +66,12 @@ class App {
     this.$formButtons.style.display = "none";
     this.$noteTitle.value = "";
     this.$noteText.value = "";
+  }
+  
+  openModal(event) {
+     if (event.target.closest('.note')) {
+        this.$modal.classList.toggle('open-modal');  
+     }
   }
 
   addNote({ title, text }) {
@@ -101,3 +110,4 @@ class App {
 }
 
 new App();
+
